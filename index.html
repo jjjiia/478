@@ -102,9 +102,9 @@
         function myTimer() {
             d+=1
             if(d%20==0){
-                d3.selectAll("#inCount").style("opacity",0)
-                d3.selectAll("#holdCount").style("opacity",0)
-                d3.selectAll("#outCount").style("opacity",0)
+                d3.selectAll("#inCount").style("opacity",0).html(0)
+                d3.selectAll("#holdCount").style("opacity",0).html(0)
+                d3.selectAll("#outCount").style("opacity",0).html(0)
                 var currentColor = colors[Math.round(Math.random()*colors.length)]
                 d3.selectAll(".small").style("color",currentColor)
                 d3.selectAll(".large").style("color",currentColor)
