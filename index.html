@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <meta charset="UTF-8">
+	  
+	<title>478</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<script src="d3.js"></script>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    
+    
+<style>
+    body{
+        font-family:helvetica;
+        font-size:250px;
+        text-align:center;
+        padding:0px;
+    }
+    .col-md-4{
+        padding:0px;
+        margin:0px;
+    }
+    .small{
+        font-size:40px;
+        text-align:center;
+        line-height:100%;
+        padding:20px;
+    }
+    .large{
+        padding-bottom:50px;
+        line-height:90%;
+    }
+    .container{
+        padding:0px;
+        height:100%;
+    }
+    #loader{
+        color:#aaaaaa;
+        font-size:60px;
+        text-align:left;
+        padding:20px;
+        background-color:#ffffff;
+        position:absolute;
+        left:0px;
+        top:0px;
+        width:100%;
+        height:100%;
+        z-index:9;
+    }
+</style>
+</head>
+
+<body>
+<!--
+    <div id="loader">Breath ... in for 4 ... hold for 7 ... out for 8</div>
+-->
+    <div class="container">
+  <div class="col-md-4" id="in">
+      <div class="row small">
+          in
+      </div>
+      <div class="row large" id="inCount">
+          4
+      </div>
+  </div>
+  <div class="col-md-4" id="hold">
+      <div class="row small">
+          hold
+      </div>
+      <div class="row large" id="holdCount">
+          7
+      </div>
+  </div>
+  <div class="col-md-4" id="out">
+      <div class="row small">
+          out
+      </div>
+      <div class="row large" id="outCount">
+          8
+      </div>
+  </div>  
+</div>
+
+
+
+    <script>
+        var colors = ["#655e4e","#7fe942","#595242","#e8dd36","#667560","#bee648","#4e5632","#72ec7d","#606843","#4ebe37","#abaf98","#85b52e","#dfdfb8","#317921","#dee983","#296437","#b5b335","#4e6c42","#a0d872","#595c1c","#b8e7a8","#4d631c","#4bc067","#837628","#459931","#81835e","#2c853f","#c3b560","#3e7030","#a8b17b","#3e6914","#7cbd7b","#76713c","#709937","#739366","#859136","#508a5a","#517c28","#6c8548","#5c9451"]
+      
+    var currentColor = colors[Math.round(Math.random()*colors.length)]
+    d3.selectAll(".small").style("color",currentColor).style("opacity",0.3)
+    d3.selectAll(".large").style("color",currentColor)
+   
+        
+        
+        function count(max,div){
+            
+        }
+        var d = 0
+        var myVar = setInterval(myTimer, 1000);
+
+        function myTimer() {
+            d+=1
+            if(d%20==0){
+                d3.selectAll("#inCount").style("opacity",0)
+                d3.selectAll("#holdCount").style("opacity",0)
+                d3.selectAll("#outCount").style("opacity",0)
+                var currentColor = colors[Math.round(Math.random()*colors.length)]
+                d3.selectAll(".small").style("color",currentColor)
+                d3.selectAll(".large").style("color",currentColor)
+            }
+            else if(d%20<=4&&d%20>0){
+                document.getElementById("inCount").innerHTML = d%20;
+                d3.selectAll(".large").style("opacity",0.3)
+                d3.selectAll("#inCount").style("opacity",.6).transition().duration(900).style("opacity",0)
+               // if(d%20==0){d3.selectAll("#inCount").style("opacity",0)}
+                
+            }else if(d%20<=11 && d%20>=4){
+                //document.getElementById("holdCount").innerHTML = d%20-4;
+                d3.selectAll("#holdCount").html(d%20-4)
+                d3.selectAll(".large").style("opacity",0.3)
+                d3.selectAll("#holdCount").style("opacity",.6).transition().duration(900).style("opacity",0)
+            }else{
+                document.getElementById("outCount").innerHTML = d%20-11;
+                d3.selectAll(".large").style("opacity",0.3)
+                d3.selectAll("#outCount").style("opacity",.6).transition().duration(900).style("opacity",0)
+            }
+            
+        }
+        
+    </script>
+
+    </body>
+</html>
+    
